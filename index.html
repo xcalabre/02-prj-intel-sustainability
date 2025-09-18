@@ -2,142 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Intel: Sustainability Through the Ages</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#timeline">Skip to timeline</a>
 
-  <!-- Header / Hero Section -->
-  <header>
-    <div>
-      <!-- Ask Copilot to teach you about `.svg`. 🙂 You'll need to resize the logo with CSS. -->
-      <img src="img/intel-header-logo.svg" alt="Intel Logo" />
-      <!-- Main Heading -->
-      <h1>
-        Sustainability Through the Ages
-      </h1>
-
-      <!-- Subheading / Description -->
-      <p>
-        Explore Intel's journey through time, discovering how our commitment
-        to innovation has shaped a more sustainable future for technology 
-        and our planet.
+  <header class="hero" role="banner">
+    <div class="hero__inner">
+      <img class="hero__logo" src="img/intel-header-logo.svg" alt="Intel logo" />
+      <h1 class="hero__title">Sustainability Through the Ages</h1>
+      <p class="hero__tagline">
+        Explore Intel’s journey through time, discovering how our commitment
+        to innovation has shaped a more sustainable future for technology and our planet.
       </p>
     </div>
   </header>
 
-  <!-- Timeline Cards Section -->
-  <section>
-
-    <!-- Card 1: 1968 -->
-    <div>
-      <h2>1968</h2>
-      <h3>Intel Founded</h3>
-      <!-- Add image -->
-      <p>
-        Robert Noyce and Gordon Moore rename the newly formed company 
-        NM Electronics to Intel Corporation, laying the foundation for 
-        decades of technological innovation.
+  <main>
+    <section id="timeline" class="timeline" aria-label="Intel sustainability timeline">
+      <p class="scroll-hint">
+        💡 Tip: Use <kbd>Shift</kbd> + <kbd>Scroll</kbd> to move sideways
       </p>
-    </div>
+      <ol class="rail" role="list" tabindex="0" aria-describedby="timeline-help">
+        <!-- Milestone pattern:
+             <li class="milestone" data-year="YYYY" data-title="Short title">
+               <details class="card" data-alt="Overlay text shown on hover/focus">
+                 <summary>
+                   <img src="..." alt="(same as data-alt or a11y alt text)" loading="lazy" />
+                 </summary>
+                 <div class="card__details"> ...full text... </div>
+               </details>
+             </li>
+        -->
 
-    <!-- Card 2: 1971 -->
-    <div>
-      <h2>1971</h2>
-      <h3>First Microprocessor</h3>
-      <!-- Add image -->
-      <p>
-        Intel debuts the 4004, the world's first commercial microprocessor, 
-        igniting the microprocessor revolution and propelling the future 
-        of computing devices.
-      </p>
-    </div>
+        <!-- 1968 -->
+        <li class="milestone" data-year="1968" data-title="Intel Founded">
+          <details class="card" data-alt="1968 — Intel is founded by Robert Noyce and Gordon Moore">
+            <summary>
+              <img src="img/1.jpg" alt="1968 — Intel is founded by Robert Noyce and Gordon Moore" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>1968</h2>
+              <h3>Intel Founded</h3>
+              <p>Robert Noyce and Gordon Moore rename NM Electronics to Intel Corporation…</p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 3: 1978 -->
-    <div>
-      <h2>1978</h2>
-      <h3>8086 Processor</h3>
-      <!-- Add image -->
-      <p>
-        Launch of the 8086 processor, establishing the x86 architecture 
-        that drives countless PCs and servers in the modern era.
-      </p>
-    </div>
+        <!-- 1971 -->
+        <li class="milestone" data-year="1971" data-title="First Microprocessor">
+          <details class="card" data-alt="1971 — Intel 4004, the first commercial microprocessor">
+            <summary>
+              <img src="img/2.jpg" alt="1971 — Intel 4004, the first commercial microprocessor" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>1971</h2>
+              <h3>First Microprocessor</h3>
+              <p>Intel debuts the 4004, the world's first commercial microprocessor…</p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 4: 1985 -->
-    <div>
-      <h2>1985</h2>
-      <h3>386 Processor</h3>
-      <!-- Add image -->
-      <p>
-        Intel introduces the 386 processor with 32-bit architecture, 
-        ushering in a new era of performance and multitasking for 
-        personal computers.
-      </p>
-    </div>
+        <!-- 1978 -->
+        <li class="milestone" data-year="1978" data-title="8086 Processor">
+          <details class="card" data-alt="1978 — 8086 launches the x86 architecture">
+            <summary>
+              <img src="img/3.jpg" alt="1978 — 8086 launches the x86 architecture" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>1978</h2>
+              <h3>8086 Processor</h3>
+              <p>Launch of the 8086 processor, establishing the x86 architecture…</p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 5: 2006 -->
-    <div>
-      <h2>2006</h2>
-      <h3>Peak GHG Emissions</h3>
-      <!-- Add image -->
-      <p>
-        This year marks Intel's highest annual greenhouse gas emissions 
-        for operations. Over subsequent years, Intel invests heavily in 
-        chemical abatement, renewable energy, and energy-efficient 
-        manufacturing to reverse this trend.
-      </p>
-    </div>
+        <!-- 1985 -->
+        <li class="milestone" data-year="1985" data-title="First Intel Architecture">
+          <details class="card" data-alt="1985 — Introduction of the Intel 80386 processor">
+            <summary>
+              <img src="img/4.jpg" alt="1985 — Introduction of the Intel 80386 processor" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>1985</h2>
+              <h3>First Intel Architecture</h3>
+              <p>
+                The Intel 80386 processor is introduced, featuring a new 32-bit architecture
+                that significantly boosts performance and expands memory capacity.
+              </p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 6: 2020 -->
-    <div>
-      <h2>2020</h2>
-      <h3>RISE Strategy</h3>
-      <!-- Add image -->
-      <p>
-        Intel launches its RISE (Responsible, Inclusive, Sustainable, 
-        Enabling) strategy and 2030 goals, aiming to drive industry-wide 
-        progress on climate action, water stewardship, and waste reduction.
-      </p>
-    </div>
+        <!-- 1993 -->
+        <li class="milestone" data-year="1993" data-title="Pentium Processor">
+          <details class="card" data-alt="1993 — Launch of the Intel Pentium processor">
+            <summary>
+              <img src="img/5.jpg" alt="1993 — Launch of the Intel Pentium processor" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>1993</h2>
+              <h3>Pentium Processor</h3>
+              <p>
+                Intel launches the Pentium processor, marking a new era of high-performance computing
+                with its superscalar architecture and integrated floating-point unit.
+              </p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 7: 2022 -->
-    <div>
-      <h2>2022</h2>
-      <h3>Net-Zero By 2040</h3>
-      <!-- Add image -->
-      <p>
-        Intel announces its commitment to achieve net-zero greenhouse 
-        gas emissions (Scope 1 and 2) across its global operations 
-        by 2040, building on years of environmental initiatives.
-      </p>
-    </div>
+        <!-- 2006 -->
+        <li class="milestone" data-year="2006" data-title="Core Microarchitecture">
+          <details class="card" data-alt="2006 — Introduction of Intel Core microarchitecture">
+            <summary>
+              <img src="img/6.jpg" alt="2006 — Introduction of Intel Core microarchitecture" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>2006</h2>
+              <h3>Core Microarchitecture</h3>
+              <p>
+                The Intel Core microarchitecture is unveiled, delivering breakthrough energy-efficient performance
+                and paving the way for multi-core processors.
+              </p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 8: 2023 -->
-    <div>
-      <h2>2023</h2>
-      <h3>Renewable Electricity</h3>
-      <!-- Add image -->
-      <p>
-        The company achieves 99% renewable electricity usage worldwide, 
-        helping to drastically lower carbon emissions and driving progress 
-        toward Intel's long-term sustainability goals.
-      </p>
-    </div>
+        <!-- 2012 -->
+        <li class="milestone" data-year="2012" data-title="Ivy Bridge Microarchitecture">
+          <details class="card" data-alt="2012 — Launch of the Intel Ivy Bridge processors">
+            <summary>
+              <img src="img/7.jpg" alt="2012 — Launch of the Intel Ivy Bridge processors" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>2012</h2>
+              <h3>Ivy Bridge Microarchitecture</h3>
+              <p>
+                Intel Ivy Bridge processors are launched, featuring 22nm process technology
+                and introducing USB 3.0 support.
+              </p>
+            </div>
+          </details>
+        </li>
 
-    <!-- Card 9: 2024 -->
-    <div>
-      <h2>2024</h2>
-      <h3>Sustainability Summit</h3>
-      <!-- Add image -->
-      <p>
-        Intel hosts its first Sustainability Summit, uniting suppliers, 
-        government officials, and industry leaders to collaborate on 
-        next-generation sustainable semiconductor manufacturing.
-      </p>
-    </div>
-  </section>
-  <p>Scroll to view timeline | Hover over cards to learn more!</p>
+        <!-- 2016 -->
+        <li class="milestone" data-year="2016" data-title="Kaby Lake Microarchitecture">
+          <details class="card" data-alt="2016 — Introduction of the Intel Kaby Lake processors">
+            <summary>
+              <img src="img/8.jpg" alt="2016 — Introduction of the Intel Kaby Lake processors" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>2016</h2>
+              <h3>Kaby Lake Microarchitecture</h3>
+              <p>
+                The Intel Kaby Lake processors are introduced, enhancing performance and efficiency
+                with improved 14nm process technology.
+              </p>
+            </div>
+          </details>
+        </li>
+
+        <!-- 2020 -->
+        <li class="milestone" data-year="2020" data-title="Tiger Lake Processors">
+          <details class="card" data-alt="2020 — Launch of the Intel Tiger Lake processors">
+            <summary>
+              <img src="img/9.jpg" alt="2020 — Launch of the Intel Tiger Lake processors" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>2020</h2>
+              <h3>Tiger Lake Processors</h3>
+              <p>
+                Intel Tiger Lake processors are launched, featuring 10nm process technology
+                and delivering unprecedented AI performance and integrated Thunderbolt 4 support.
+              </p>
+            </div>
+          </details>
+        </li>
+
+        <!-- 2022 -->
+        <li class="milestone" data-year="2022" data-title="Alder Lake Processors">
+          <details class="card" data-alt="2022 — Introduction of the Intel Alder Lake processors">
+            <summary>
+              <img src="img/10.jpg" alt="2022 — Introduction of the Intel Alder Lake processors" loading="lazy" />
+            </summary>
+            <div class="card__details">
+              <h2>2022</h2>
+              <h3>Alder Lake Processors</h3>
+              <p>
+                The Intel Alder Lake processors are introduced, featuring a hybrid architecture
+                that combines high-performance and high-efficiency cores for the first time.
+              </p>
+            </div>
+          </details>
+        </li>
+      </ol>
+    </section>
+  </main>
 </body>
 </html>
