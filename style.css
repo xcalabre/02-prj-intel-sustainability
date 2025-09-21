@@ -102,22 +102,34 @@ body {
 /* The card is a details element that shows more info when opened */
 .card {
   position: relative;
-  background: #fff;
+  /* Make the card background transparent so the image fills the whole card.
+     We still keep rounded corners and shadow so the card reads as a card. */
+  background: transparent;
   border-radius: 18px;
   box-shadow: 0 6px 18px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.08);
   overflow: hidden; /* Clip image zoom to card */
   transition: box-shadow 280ms ease, transform 280ms ease;
 }
+
+/* Keep a slightly stronger shadow on focus/open but DO NOT change size or translate.
+   This prevents the card from "opening up" into extra white space. */
 .card[open], .card:focus-within {
   box-shadow: 0 10px 26px rgba(0,0,0,.14), 0 4px 10px rgba(0,0,0,.10);
-  transform: translateY(-1px);
+  transform: none; /* no lift/translate when opened */
 }
 
-/* Hide the default marker, make the image clickable */
-.card > summary { list-style: none; cursor: pointer; outline: none; }
+/* Hide the default marker, and disable pointer events on the summary so clicking
+   the image/summary will NOT toggle the <details>. This removes the click/toggle effect.
+   (We keep the image non-interactive so horizontal swipes/scroll still work.) */
+.card > summary {
+  list-style: none;
+  cursor: default;      /* not shown as clickable */
+  outline: none;
+  pointer-events: none; /* block clicks on the summary so details won't toggle */
+}
 .card > summary::-webkit-details-marker { display: none; }
 
-/* Card image zooms slightly on hover/focus */
+/* Card image zooms slightly on hover/focus (image already has pointer-events: none so zoom only on card hover) */
 .card > summary > img {
   width: 100%;
   aspect-ratio: 4 / 3; /* Consistent size */
@@ -132,7 +144,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  pointer-events: none;                /* image doesn’t eat the swipe; summary still clickable */
+  pointer-events: none;                /* image doesn’t eat the swipe; summary still non-clickable */
 }
 .card:hover > summary > img,
 .card:focus-within > summary > img {
@@ -152,7 +164,7 @@ body {
   line-height: 1.25;
   letter-spacing: .2px;
 
-  opacity: 0;
+  opacity: 75%;
   transform: translateY(6px);
   transition: opacity 200ms ease, transform 200ms ease;
   pointer-events: none;
@@ -163,21 +175,63 @@ body {
   transform: translateY(0);
 }
 
-/* Card details are hidden until hover or open */
+/* Make the details block full-height overlay inside the card.
+   Headings (h2/h3) sit at the top edge and are visible by default.
+   The paragraph (<p>) is hidden and becomes a white overlay on hover. */
 .card__details {
-  padding: .9rem 1rem 1.1rem;
-  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: transparent; /* let the image show through under headings */
+  color: #fff;
+  padding: .6rem .9rem;
+  box-sizing: border-box;
+  pointer-events: none; /* don't intercept hover; the card handles hover */
+}
+
+/* Headings positioned at the top, readable over the image */
+.card__details > h2,
+.card__details > h3 {
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  pointer-events: none;
+}
+.card__details > h2 { font-size: 0.95rem; font-weight: 700; }
+.card__details > h3 { font-size: 0.82rem; font-weight: 600; opacity: .95; margin-top: .15rem; }
+
+/* Paragraph is a bottom overlay, hidden by default */
+.card__details > p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 1rem;
+  background: rgba(255,255,255,0.94);
+  color: #111;
+  transform: translateY(8px);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(4px);
-  transition: opacity 220ms ease, transform 220ms ease, visibility 0s linear 220ms;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+  pointer-events: none;
+  z-index: 2;
 }
-.card:hover .card__details,
-.card:focus-within .card__details,
-.card[open] .card__details {
-  opacity: 1; visibility: visible; transform: translateY(0);
-  transition-delay: 0s;
+
+/* Reveal the paragraph overlay only on hover/focus-within (no click) */
+.card:hover .card__details > p,
+.card:focus-within .card__details > p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
+
+/* Slightly dim the image when overlay is shown to improve contrast */
+.card:hover > summary > img,
+.card:focus-within > summary > img { filter: brightness(0.78) saturate(0.95); }
 
 /* Thin scrollbar for the rail */
 .rail::-webkit-scrollbar { height: 10px; }
@@ -196,6 +250,52 @@ body {
 /* Extra small screens: make cards fit better */
 @media (max-width: 420px) {
   .milestone { width: 86vw; }
+}
+
+/* Responsive: switch timeline to vertical on small devices */
+@media (max-width: 720px) {
+  .rail {
+    flex-direction: column;
+    gap: clamp(.5rem, 2.5vw, 1rem);
+    padding: 1rem;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-padding-block: 6vh;
+  }
+
+  .milestone {
+    width: 100%;
+    max-width: 100%;
+    scroll-snap-align: start;
+    display: block;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  /* Make image taller on mobile for easier tap targets */
+  .card > summary > img {
+    aspect-ratio: 16 / 9;
+    border-bottom: none;
+  }
+
+  /* Expand overlay paragraph to cover more of the card on mobile */
+  .card__details > p {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    max-height: 60vh;
+    overflow: auto;
+  }
+
+  /* Make the headings slightly larger on small screens */
+  .card__details > h2 { font-size: 1.05rem; }
+  .card__details > h3 { font-size: 0.92rem; }
 }
 
 /* Footer matches background */
@@ -221,7 +321,7 @@ body {
   text-align: center;
   font-size: 0.9rem;
   color: #fff;
-  background: rgba(0,0,0,0.55); /* subtle shadow background only behind text */
+  background: #0071C5; /* subtle shadow background only behind text */
   padding: 0.4rem 0.8rem;
   border-radius: 999px;         /* pill shape */
   pointer-events: none;
